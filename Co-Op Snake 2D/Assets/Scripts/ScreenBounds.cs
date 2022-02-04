@@ -11,6 +11,7 @@ public class ScreenBounds : MonoBehaviour
     public UnityEvent<Collider2D> ExitTriggerFired;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private float teleportOffset = 0.2f;
+    [SerializeField] private float cornerOffser = 1f;
 
 
     private void Awake()
@@ -49,8 +50,8 @@ public class ScreenBounds : MonoBehaviour
 
     public Vector2 CalculateWrappedPosition(Vector2 worldPosition)
     {
-        bool xBoundResult = Mathf.Abs(worldPosition.x) > Mathf.Abs(boxCollider2D.bounds.min.x);
-        bool yBoundResult = Mathf.Abs(worldPosition.y) > Mathf.Abs(boxCollider2D.bounds.min.y);
+        bool xBoundResult = Mathf.Abs(worldPosition.x) > Mathf.Abs(boxCollider2D.bounds.min.x) - cornerOffser;
+        bool yBoundResult = Mathf.Abs(worldPosition.y) > Mathf.Abs(boxCollider2D.bounds.min.y) - cornerOffser;
 
         Vector2 signWorldPosition = new Vector2(Mathf.Sign(worldPosition.x), Mathf.Sign(worldPosition.y));
 
