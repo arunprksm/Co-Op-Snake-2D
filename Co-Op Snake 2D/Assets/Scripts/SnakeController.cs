@@ -13,6 +13,7 @@ public class SnakeController : MonoBehaviour
         }
     }
 
+    public ScreenBounds screenBounds;
     private Vector2 snakeDirection = Vector2.up;
     private bool w, a, s, d;
     private List<Transform> snakeBodyExpand = new List<Transform>();
@@ -48,6 +49,7 @@ public class SnakeController : MonoBehaviour
     {
         MovementControl();
     }
+
     private void HandleInputs()
     {
         w = Input.GetKeyDown(KeyCode.W);
@@ -96,8 +98,18 @@ public class SnakeController : MonoBehaviour
         {
             snakeBodyExpand[i].position = snakeBodyExpand[i - 1].position;
         }
-
-        transform.position = new Vector2(Mathf.Round(this.transform.position.x) + snakeDirection.x, Mathf.Round(this.transform.position.y) + snakeDirection.y);
+        Vector2 tempPosition;
+        tempPosition = new Vector2(Mathf.Round(this.transform.position.x) + snakeDirection.x, Mathf.Round(this.transform.position.y) + snakeDirection.y);
+        if (screenBounds.AmIOutOfBounds(tempPosition))
+        {
+            Vector2 newPosition = screenBounds.CalculateWrappedPosition(tempPosition);
+            transform.position = newPosition;
+        }
+        else
+        {
+            transform.position = tempPosition;
+        }
+        //transform.position = new Vector2(Mathf.Round(this.transform.position.x) + snakeDirection.x, Mathf.Round(this.transform.position.y) + snakeDirection.y);
     }
 
     public void SnakeExpand()
