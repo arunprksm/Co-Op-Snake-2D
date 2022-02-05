@@ -56,42 +56,29 @@ public class SnakeController : MonoBehaviour
         a = Input.GetKeyDown(KeyCode.A);
         s = Input.GetKeyDown(KeyCode.S);
         d = Input.GetKeyDown(KeyCode.D);
+
     }
 
     private void HandleSnakeMovements()
     {
-        
-        if (w)
+        if (w && snakeDirection != Vector2.down)
         {
-            if (snakeDirection != Vector2.down)
-            {
-                snakeDirection = Vector2.up;
-            }
+            snakeDirection = Vector2.up;
+        }
 
-        }
-        else if (a)
+        else if (a && snakeDirection != Vector2.right)
         {
-            if (snakeDirection != Vector2.right)
-            {
-                snakeDirection = Vector2.left;
-            }
+            snakeDirection = Vector2.left;
         }
-        else if (s)
+        else if (s && snakeDirection != Vector2.up)
         {
-            if (snakeDirection != Vector2.up)
-            {
-                snakeDirection = Vector2.down;
-            }
+            snakeDirection = Vector2.down;
         }
-        else if (d)
+        else if (d && snakeDirection != Vector2.left)
         {
-            if (snakeDirection != Vector2.left)
-            {
-                snakeDirection = Vector2.right;
-            }
+            snakeDirection = Vector2.right;
         }
     }
-
     private void MovementControl()
     {
         for (int i = snakeBodyExpand.Count - 1; i > 0; i--)
@@ -118,6 +105,18 @@ public class SnakeController : MonoBehaviour
         newSnakeBodyExpand.position = snakeBodyExpand[snakeBodyExpand.Count - 1].position;
         snakeBodyExpand.Add(newSnakeBodyExpand);
     }
+    public void SnakeShrink()
+    {
+        if (snakeBodyExpand.Count == 1)
+        {
+            ResetGame();
+        }
+        else
+        {
+            Destroy(snakeBodyExpand[snakeBodyExpand.Count - 1].gameObject);
+            snakeBodyExpand.RemoveAt(snakeBodyExpand.Count - 1);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -133,6 +132,7 @@ public class SnakeController : MonoBehaviour
         {
             Destroy(snakeBodyExpand[i].gameObject);
         }
+        this.transform.position = Vector2.one;
         snakeBodyExpand.Clear();
         snakeBodyExpand.Add(this.transform);
 
