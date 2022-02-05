@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class ScreenBounds : MonoBehaviour
 {
     BoxCollider2D boxCollider2D;
-    public UnityEvent<Collider2D> ExitTriggerFired;
+    private UnityEvent<Collider2D> ExitTriggerFired;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private float teleportOffset = 0.2f;
     [SerializeField] private float cornerOffser = 1f;
