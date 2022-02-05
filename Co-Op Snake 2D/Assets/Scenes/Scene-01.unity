@@ -247,7 +247,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -261,7 +261,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 34, y: 18}
+  m_Size: {x: 30, y: 17}
   m_EdgeRadius: 0
 --- !u!1 &662907757
 GameObject:
@@ -311,7 +311,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   mainCamera: {fileID: 403996734}
-  teleportOffset: 0.2
+  teleportOffset: 0
   cornerOffser: 1
 --- !u!61 &662907760
 BoxCollider2D:
@@ -425,11 +425,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5480635530474329988, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.1
+      value: -10.8
       objectReference: {fileID: 0}
     - target: {fileID: 5480635530474329988, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.5
+      value: -6.4
       objectReference: {fileID: 0}
     - target: {fileID: 5480635530474329988, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
       propertyPath: m_LocalPosition.z
