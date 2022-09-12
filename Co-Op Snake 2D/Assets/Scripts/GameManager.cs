@@ -10,7 +10,6 @@ public class GameManager : SingletonGenerics<GameManager>
     [SerializeField] private Text playerWin;
     public Text player1Score, player2Score;
 
-
     private void Start()
     {
         GameOver.SetActive(false);
@@ -25,7 +24,7 @@ public class GameManager : SingletonGenerics<GameManager>
     public void PlayerWin(string name)
     {
         GameOver.SetActive(true);
-        Time.timeScale = 0f;
         playerWin.text = name;
+        Time.timeScale = 0f;
     }
 }

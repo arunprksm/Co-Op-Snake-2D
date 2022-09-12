@@ -16,7 +16,7 @@ public class ScreenBounds : MonoBehaviour
 
     private void Awake()
     {
-        this.mainCamera.transform.localScale = Vector2.one;
+        mainCamera.transform.localScale = Vector2.one;
         boxCollider2D = GetComponent<BoxCollider2D>();
         boxCollider2D.isTrigger = true;
     }

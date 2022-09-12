@@ -16,7 +16,7 @@ public class PoisonController : SingletonGenerics<PoisonController>
     {
         PoisonSpawnArea();
         yield return new WaitForSecondsRealtime(2);
-        //PoisonSpawnArea();
+        PoisonSpawnArea();
     }
     public void PoisonSpawnArea()
     {
