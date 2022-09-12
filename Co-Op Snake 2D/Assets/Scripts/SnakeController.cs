@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SnakeController : SingletonGenerics<SnakeController>
 {
-    public ScreenBounds screenBounds;
+    [SerializeField] private ScreenBounds screenBounds;
     private Vector2 snakeDirection;
     private bool up, left, down, right;
     private bool upArrow, leftArrow, downArrow, rightArrow;
@@ -101,9 +101,14 @@ public class SnakeController : SingletonGenerics<SnakeController>
     {
         if (snakeBodyExpand.Count == 1)
         {
-            if (gameObject.name == player1) Debug.Log("player 1");
-            else Debug.Log("Player 2");
-            ResetGame();
+            if (gameObject.name == player1)
+            {
+                GameManager.Instance.PlayerWin("Player 2 wins");
+            }
+            else if (gameObject.name == player2)
+            {
+                GameManager.Instance.PlayerWin("Player 1 wins");
+            }
         }
         else
         {
@@ -118,11 +123,12 @@ public class SnakeController : SingletonGenerics<SnakeController>
         {
             if (gameObject.name == player1)
             {
-                Debug.Log("player 1");
+                GameManager.Instance.PlayerWin("Player 2 wins");
             }
-
-            else Debug.Log("Player 2");
-            //ResetGame();
+            else if (gameObject.name == player2)
+            {
+                GameManager.Instance.PlayerWin("Player 1 wins");
+            }
         }
 
         if (collision.GetComponent<FoodController>())
@@ -138,7 +144,7 @@ public class SnakeController : SingletonGenerics<SnakeController>
         }
     }
 
-    private void ResetGame()
+    public void ResetGame()
     {
         for (int i = 1; i < snakeBodyExpand.Count; i++)
         {
