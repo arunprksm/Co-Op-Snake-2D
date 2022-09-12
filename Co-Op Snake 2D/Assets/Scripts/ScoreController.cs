@@ -5,10 +5,4 @@ using UnityEngine.UI;
 
 public class ScoreController : SingletonGenerics<ScoreController>
 {
-    public Button close;
-
-    private void Start()
-    {
-
-    }
 }

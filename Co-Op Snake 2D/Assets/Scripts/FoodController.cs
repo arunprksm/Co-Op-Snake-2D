@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class FoodController : SingletonGenerics<FoodController>
 {
-    public BoxCollider2D gridArea;
+    [SerializeField] private BoxCollider2D gridArea;
     private void Start()
     {
+        FoodSpawnArea();
+    }
+
+    public IEnumerator SpwanTime()
+    {
+        FoodSpawnArea();
+        yield return new WaitForSecondsRealtime(6);
         FoodSpawnArea();
     }
     public void FoodSpawnArea()

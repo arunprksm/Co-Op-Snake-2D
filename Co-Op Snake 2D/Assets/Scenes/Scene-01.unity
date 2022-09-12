@@ -355,7 +355,7 @@ GameObject:
   - component: {fileID: 411161556}
   - component: {fileID: 411161555}
   m_Layer: 5
-  m_Name: Text
+  m_Name: TextP2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -375,10 +375,10 @@ RectTransform:
   m_Father: {fileID: 1855580022}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -175, y: 0}
-  m_SizeDelta: {x: 150, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &411161555
 MonoBehaviour:
@@ -407,15 +407,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 50
-    m_Alignment: 5
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Player 1
-
-    Score'
+  m_Text: Player 2 Score
 --- !u!222 &411161556
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1094,6 +1092,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1030741025}
   - component: {fileID: 1030741026}
+  - component: {fileID: 1030741027}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1129,6 +1128,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameOver: {fileID: 1009666194}
   playerWin: {fileID: 1913487026}
+  player1Score: {fileID: 1462484262}
+  player2Score: {fileID: 411161555}
+--- !u!114 &1030741027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030741024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 097c9014adfa607479a473dd4a5b18e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1051565355
 GameObject:
   m_ObjectHideFlags: 0
@@ -1316,7 +1329,7 @@ GameObject:
   - component: {fileID: 1462484263}
   - component: {fileID: 1462484262}
   m_Layer: 5
-  m_Name: Text
+  m_Name: TextP1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1336,10 +1349,10 @@ RectTransform:
   m_Father: {fileID: 216322105}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -175, y: 0}
-  m_SizeDelta: {x: 150, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1462484262
 MonoBehaviour:
@@ -1368,15 +1381,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 50
-    m_Alignment: 5
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Player 1
-
-    Score'
+  m_Text: Player 1 Score
 --- !u!222 &1462484263
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1526,7 +1537,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 097c9014adfa607479a473dd4a5b18e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  close: {fileID: 0}
 --- !u!1 &1692665352
 GameObject:
   m_ObjectHideFlags: 0

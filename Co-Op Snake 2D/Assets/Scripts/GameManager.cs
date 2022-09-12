@@ -8,6 +8,8 @@ public class GameManager : SingletonGenerics<GameManager>
 {
     [SerializeField] private GameObject GameOver;
     [SerializeField] private Text playerWin;
+    public Text player1Score, player2Score;
+
 
     private void Start()
     {

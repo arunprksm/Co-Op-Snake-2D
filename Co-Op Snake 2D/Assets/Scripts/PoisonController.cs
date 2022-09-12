@@ -5,11 +5,18 @@ using UnityEngine;
 
 public class PoisonController : SingletonGenerics<PoisonController>
 {
-    public BoxCollider2D gridArea;
+    [SerializeField] private BoxCollider2D gridArea;
 
     private void Start()
     {
         PoisonSpawnArea();
+    }
+
+    public IEnumerator SpwanTime()
+    {
+        PoisonSpawnArea();
+        yield return new WaitForSecondsRealtime(2);
+        //PoisonSpawnArea();
     }
     public void PoisonSpawnArea()
     {

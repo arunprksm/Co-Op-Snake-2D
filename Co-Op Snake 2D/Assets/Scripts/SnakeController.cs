@@ -11,6 +11,8 @@ public class SnakeController : SingletonGenerics<SnakeController>
     private List<Transform> snakeBodyExpand = new List<Transform>();
     string player1, player2;
 
+    int currentScore = 0;
+
     [SerializeField] private Transform snakeBodyExpandPrefab;
     [SerializeField] private int snakeInitialSize = 5;
     private void Start()
@@ -25,6 +27,8 @@ public class SnakeController : SingletonGenerics<SnakeController>
     {
         if (name == player1) snakeDirection = Vector2.up;
         if (name == player2) snakeDirection = Vector2.left;
+        GameManager.Instance.player1Score.text = "Player 1 Score: " + currentScore;
+        GameManager.Instance.player2Score.text = "Player 2 Score: " + currentScore;
     }
 
     private void Update()
@@ -96,6 +100,16 @@ public class SnakeController : SingletonGenerics<SnakeController>
         Transform newSnakeBodyExpand = Instantiate(snakeBodyExpandPrefab);
         newSnakeBodyExpand.position = snakeBodyExpand[snakeBodyExpand.Count - 1].position;
         snakeBodyExpand.Add(newSnakeBodyExpand);
+        if (gameObject.name == player1)
+        {
+            currentScore += 100;
+            GameManager.Instance.player1Score.text = "Player 1 Score: " + currentScore;
+        }
+        else if (gameObject.name == player2)
+        {
+            currentScore += 100;
+            GameManager.Instance.player2Score.text = "Player 2 Score: " + currentScore;
+        }
     }
     public void SnakeShrink()
     {
@@ -114,6 +128,19 @@ public class SnakeController : SingletonGenerics<SnakeController>
         {
             Destroy(snakeBodyExpand[snakeBodyExpand.Count - 1].gameObject);
             snakeBodyExpand.RemoveAt(this.snakeBodyExpand.Count - 1);
+            if (gameObject.name == player1)
+            {
+                currentScore -= 100;
+                if (currentScore <= 0) currentScore = 0;
+                GameManager.Instance.player1Score.text = "Player 1 Score: " + currentScore;
+
+            }
+            else if (gameObject.name == player2)
+            {
+                currentScore -= 100;
+                if(currentScore <= 0) currentScore = 0;
+                GameManager.Instance.player1Score.text = "Player 2 Score: " + currentScore;
+            }
         }
     }
 
@@ -133,7 +160,7 @@ public class SnakeController : SingletonGenerics<SnakeController>
 
         if (collision.GetComponent<FoodController>())
         {
-            FoodController.Instance.FoodSpawnArea();
+            StartCoroutine(FoodController.Instance.SpwanTime());
             SnakeExpand();
         }
 
