@@ -673,17 +673,21 @@ PrefabInstance:
       propertyPath: snakeInitialSize
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5480635530474329987, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5480635530474329988, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5480635530474329988, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.3999999
+      value: -13.614
       objectReference: {fileID: 0}
     - target: {fileID: 5480635530474329988, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.2
+      value: -6.275
       objectReference: {fileID: 0}
     - target: {fileID: 5480635530474329988, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
       propertyPath: m_LocalPosition.z
@@ -719,7 +723,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5480635530474329991, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
       propertyPath: m_Name
-      value: Snake 2
+      value: Snake2
       objectReference: {fileID: 0}
     - target: {fileID: 5480635530474329991, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
       propertyPath: m_TagString
@@ -948,6 +952,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1689827042}
   - component: {fileID: 1689827043}
+  - component: {fileID: 1689827044}
   m_Layer: 5
   m_Name: UIManager
   m_TagString: Untagged
@@ -1002,6 +1007,19 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1689827044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689827041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 097c9014adfa607479a473dd4a5b18e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  close: {fileID: 0}
 --- !u!1 &1828275772
 GameObject:
   m_ObjectHideFlags: 0
@@ -1361,6 +1379,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 2158657688427449926, guid: b2c26de207784464ba4ac9ff0435cf3b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2158657688427449927, guid: b2c26de207784464ba4ac9ff0435cf3b, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1511,17 +1533,21 @@ PrefabInstance:
       propertyPath: snakeInitialSize
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5480635530474329987, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5480635530474329988, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5480635530474329988, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.3999999
+      value: 13.255
       objectReference: {fileID: 0}
     - target: {fileID: 5480635530474329988, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.2
+      value: -6.012
       objectReference: {fileID: 0}
     - target: {fileID: 5480635530474329988, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1557,7 +1583,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5480635530474329991, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
       propertyPath: m_Name
-      value: Snake 1
+      value: Snake1
       objectReference: {fileID: 0}
     - target: {fileID: 5480635530474329991, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
       propertyPath: m_TagString

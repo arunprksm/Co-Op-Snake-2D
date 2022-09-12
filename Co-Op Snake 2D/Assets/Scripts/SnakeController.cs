@@ -2,42 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SnakeController : MonoBehaviour
+public class SnakeController : SingletonGenerics<SnakeController>
 {
-    private static SnakeController instance;
-    public static SnakeController Instance
-    {
-        get
-        {
-            return instance;
-        }
-    }
-
     public ScreenBounds screenBounds;
-    private Vector2 snakeDirection = Vector2.up;
+    private Vector2 snakeDirection;
     private bool up, left, down, right;
+    private bool upArrow, leftArrow, downArrow, rightArrow;
     private List<Transform> snakeBodyExpand = new List<Transform>();
+    string player1, player2;
 
     [SerializeField] private Transform snakeBodyExpandPrefab;
     [SerializeField] private int snakeInitialSize = 5;
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-    }
-
     private void Start()
     {
+        player1 = "Snake1";
+        player2 = "Snake2";
         ResetGame();
+        InitialMovement();
+    }
+
+    private void InitialMovement()
+    {
+        if (name == player1) snakeDirection = Vector2.up;
+        if (name == player2) snakeDirection = Vector2.left;
     }
 
     private void Update()
     {
         HandleInputs();
-        HandleSnakeMovements();
+        if (name == player1) HandleSnakeMovements(up,down,left,right);
+        if (name == player2) HandleSnakeMovements(upArrow, downArrow, leftArrow, rightArrow);
     }
 
     private void FixedUpdate()
@@ -51,24 +45,29 @@ public class SnakeController : MonoBehaviour
         left = Input.GetKeyDown(KeyCode.A);
         down = Input.GetKeyDown(KeyCode.S);
         right = Input.GetKeyDown(KeyCode.D);
+
+        upArrow = Input.GetKeyDown(KeyCode.UpArrow);
+        leftArrow = Input.GetKeyDown(KeyCode.LeftArrow);
+        downArrow = Input.GetKeyDown(KeyCode.DownArrow);
+        rightArrow = Input.GetKeyDown(KeyCode.RightArrow);
     }
 
-    private void HandleSnakeMovements()
+    private void HandleSnakeMovements(bool up, bool down, bool left, bool right)
     {
-        if (up && !down && snakeDirection != Vector2.down)
+        if (up && snakeDirection != Vector2.down)
         {
             snakeDirection = Vector2.up;
         }
 
-        else if (left && !right && snakeDirection != Vector2.right)
+        else if (left && snakeDirection != Vector2.right)
         {
             snakeDirection = Vector2.left;
         }
-        else if (down && !up && snakeDirection != Vector2.up)
+        else if (down && snakeDirection != Vector2.up)
         {
             snakeDirection = Vector2.down;
         }
-        else if (right && !left && snakeDirection != Vector2.left)
+        else if (right && snakeDirection != Vector2.left)
         {
             snakeDirection = Vector2.right;
         }
@@ -94,7 +93,7 @@ public class SnakeController : MonoBehaviour
 
     public void SnakeExpand()
     {
-        Transform newSnakeBodyExpand = Instantiate(this.snakeBodyExpandPrefab);
+        Transform newSnakeBodyExpand = Instantiate(snakeBodyExpandPrefab);
         newSnakeBodyExpand.position = snakeBodyExpand[snakeBodyExpand.Count - 1].position;
         snakeBodyExpand.Add(newSnakeBodyExpand);
     }
@@ -102,12 +101,14 @@ public class SnakeController : MonoBehaviour
     {
         if (snakeBodyExpand.Count == 1)
         {
+            if (gameObject.name == player1) Debug.Log("player 1");
+            else Debug.Log("Player 2");
             ResetGame();
         }
         else
         {
             Destroy(snakeBodyExpand[snakeBodyExpand.Count - 1].gameObject);
-            snakeBodyExpand.RemoveAt(snakeBodyExpand.Count - 1);
+            snakeBodyExpand.RemoveAt(this.snakeBodyExpand.Count - 1);
         }
     }
 
@@ -115,7 +116,21 @@ public class SnakeController : MonoBehaviour
     {
         if (collision.tag == "Hit")
         {
-            ResetGame();
+            if (gameObject.name == player1) Debug.Log("player 1");
+            else Debug.Log("Player 2");
+            //ResetGame();
+        }
+
+        if (collision.GetComponent<FoodController>())
+        {
+            FoodController.Instance.FoodSpawnArea();
+            SnakeExpand();
+        }
+
+        if (collision.GetComponent<PoisonController>())
+        {
+            PoisonController.Instance.PoisonSpawnArea();
+            SnakeShrink();
         }
     }
 
