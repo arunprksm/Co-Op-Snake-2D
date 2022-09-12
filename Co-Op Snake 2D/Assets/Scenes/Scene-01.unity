@@ -964,6 +964,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 293867456, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
+      propertyPath: m_Text
+      value: P2
+      objectReference: {fileID: 0}
+    - target: {fileID: 293867456, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 293867456, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 293867456, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 293867456, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 293867456, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
+      propertyPath: m_FontData.m_HorizontalOverflow
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 759373418, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
       propertyPath: screenBounds
       value: 
@@ -976,6 +1000,14 @@ PrefabInstance:
       propertyPath: snakeBodyExpandPrefab
       value: 
       objectReference: {fileID: 6658735924399067593, guid: 1802f7e517cdbff4dbab7e82dfacffb2, type: 3}
+    - target: {fileID: 1800879735, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800879735, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5480635530474329987, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
       propertyPath: m_IsTrigger
       value: 0
@@ -1034,15 +1066,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5480635531076288314, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
       propertyPath: m_Color.b
-      value: 0.96275425
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5480635531076288314, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
       propertyPath: m_Color.g
-      value: 1
+      value: 0.808957
       objectReference: {fileID: 0}
     - target: {fileID: 5480635531076288314, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
@@ -2182,20 +2214,44 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 293867456, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 293867456, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 293867456, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 293867456, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 293867456, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
+      propertyPath: m_FontData.m_RichText
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 293867456, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 293867456, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
+      propertyPath: m_FontData.m_HorizontalOverflow
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 759373418, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
       propertyPath: screenBounds
       value: 
       objectReference: {fileID: 662907759}
-    - target: {fileID: 759373418, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
-      propertyPath: snakeInitialSize
-      value: 4
+    - target: {fileID: 1800879735, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.6
       objectReference: {fileID: 0}
-    - target: {fileID: 759373418, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
-      propertyPath: snakeBodyExpandPrefab
-      value: 
-      objectReference: {fileID: 6658735924399067593, guid: c27da67723418b74080b33635bc88f0f, type: 3}
-    - target: {fileID: 5480635530474329987, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
-      propertyPath: m_IsTrigger
+    - target: {fileID: 1800879735, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5480635530474329988, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
@@ -2245,22 +2301,6 @@ PrefabInstance:
     - target: {fileID: 5480635530474329991, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
       propertyPath: m_Name
       value: Snake1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5480635530474329991, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5480635531076288314, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5480635531076288314, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5480635531076288314, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
-      propertyPath: m_Color.r
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
