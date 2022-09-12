@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SnakeController : MonoBehaviour
 {
-    public static SnakeController instance;
+    private static SnakeController instance;
     public static SnakeController Instance
     {
         get
@@ -15,7 +15,7 @@ public class SnakeController : MonoBehaviour
 
     public ScreenBounds screenBounds;
     private Vector2 snakeDirection = Vector2.up;
-    private bool w, a, s, d;
+    private bool up, left, down, right;
     private List<Transform> snakeBodyExpand = new List<Transform>();
 
     [SerializeField] private Transform snakeBodyExpandPrefab;
@@ -26,11 +26,6 @@ public class SnakeController : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
         }
     }
 
@@ -52,29 +47,28 @@ public class SnakeController : MonoBehaviour
 
     private void HandleInputs()
     {
-        w = Input.GetKeyDown(KeyCode.W);
-        a = Input.GetKeyDown(KeyCode.A);
-        s = Input.GetKeyDown(KeyCode.S);
-        d = Input.GetKeyDown(KeyCode.D);
-
+        up = Input.GetKeyDown(KeyCode.W);
+        left = Input.GetKeyDown(KeyCode.A);
+        down = Input.GetKeyDown(KeyCode.S);
+        right = Input.GetKeyDown(KeyCode.D);
     }
 
     private void HandleSnakeMovements()
     {
-        if (w && snakeDirection != Vector2.down)
+        if (up && !down && snakeDirection != Vector2.down)
         {
             snakeDirection = Vector2.up;
         }
 
-        else if (a && snakeDirection != Vector2.right)
+        else if (left && !right && snakeDirection != Vector2.right)
         {
             snakeDirection = Vector2.left;
         }
-        else if (s && snakeDirection != Vector2.up)
+        else if (down && !up && snakeDirection != Vector2.up)
         {
             snakeDirection = Vector2.down;
         }
-        else if (d && snakeDirection != Vector2.left)
+        else if (right && !left && snakeDirection != Vector2.left)
         {
             snakeDirection = Vector2.right;
         }
@@ -96,7 +90,6 @@ public class SnakeController : MonoBehaviour
         {
             transform.position = tempPosition;
         }
-        //transform.position = new Vector2(Mathf.Round(this.transform.position.x) + snakeDirection.x, Mathf.Round(this.transform.position.y) + snakeDirection.y);
     }
 
     public void SnakeExpand()
@@ -132,13 +125,13 @@ public class SnakeController : MonoBehaviour
         {
             Destroy(snakeBodyExpand[i].gameObject);
         }
-        this.transform.position = Vector2.one;
+        transform.position = Vector2.one;
         snakeBodyExpand.Clear();
-        snakeBodyExpand.Add(this.transform);
+        snakeBodyExpand.Add(transform);
 
         for (int i = 1; i < this.snakeInitialSize; i++)
         {
-            snakeBodyExpand.Add(Instantiate(this.snakeBodyExpandPrefab));
+            snakeBodyExpand.Add(Instantiate(snakeBodyExpandPrefab));
         }
     }
 }

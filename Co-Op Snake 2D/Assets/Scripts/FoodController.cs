@@ -19,7 +19,7 @@ public class FoodController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        SnakeController.instance = collision.gameObject.GetComponent<SnakeController>();
+        //SnakeController.Instance = collision.gameObject.GetComponent<SnakeController>();
 
         if (SnakeController.Instance != null)
         {
