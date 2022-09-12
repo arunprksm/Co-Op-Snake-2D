@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6658735924399067593}
   - component: {fileID: 6658735924399067598}
   m_Layer: 0
-  m_Name: Snake Body Expand
+  m_Name: Snake Body Expand 2
   m_TagString: Hit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,7 +130,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.6180975, g: 0.6226415, b: 0.09104663, a: 1}
+  m_Color: {r: 0.47058824, g: 0.627451, b: 0.627451, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

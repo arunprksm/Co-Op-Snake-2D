@@ -116,7 +116,11 @@ public class SnakeController : SingletonGenerics<SnakeController>
     {
         if (collision.tag == "Hit")
         {
-            if (gameObject.name == player1) Debug.Log("player 1");
+            if (gameObject.name == player1)
+            {
+                Debug.Log("player 1");
+            }
+
             else Debug.Log("Player 2");
             //ResetGame();
         }
