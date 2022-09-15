@@ -12,7 +12,19 @@ public class GameManager : SingletonGenerics<GameManager>
 
     private void Start()
     {
+        if(GameOver !=null)
         GameOver.SetActive(false);
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Time.timeScale = 1f;
+    }
+    public void MainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
     }
     public void ReloadScene()
     {
@@ -21,6 +33,10 @@ public class GameManager : SingletonGenerics<GameManager>
         Time.timeScale = 1f;
     }
 
+    public void GameQuit()
+    {
+        Application.Quit();
+    }
     public void PlayerWin(string name)
     {
         GameOver.SetActive(true);

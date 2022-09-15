@@ -11,10 +11,13 @@ public class SnakeController : SingletonGenerics<SnakeController>
     private List<Transform> snakeBodyExpand = new List<Transform>();
     string player1, player2;
 
+    [SerializeField] float snakeSpeed;
     int currentScore = 0;
 
     [SerializeField] private Transform snakeBodyExpandPrefab;
     [SerializeField] private int snakeInitialSize = 5;
+
+    [SerializeField] private Rigidbody2D rb2D;
     private void Start()
     {
         player1 = "Snake1";
@@ -139,7 +142,7 @@ public class SnakeController : SingletonGenerics<SnakeController>
             {
                 currentScore -= 100;
                 if(currentScore <= 0) currentScore = 0;
-                GameManager.Instance.player1Score.text = "Player 2 Score: " + currentScore;
+                GameManager.Instance.player2Score.text = "Player 2 Score: " + currentScore;
             }
         }
     }
