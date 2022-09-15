@@ -1105,6 +1105,7 @@ GameObject:
   - component: {fileID: 2032394931}
   - component: {fileID: 2032394930}
   - component: {fileID: 2032394929}
+  - component: {fileID: 2032394932}
   m_Layer: 5
   m_Name: Button Start
   m_TagString: Untagged
@@ -1226,6 +1227,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032394927}
   m_CullTransparentMesh: 1
+--- !u!95 &2032394932
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032394927}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 85b0fc720a927b84380fb6fc570c4e4c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2083845243
 GameObject:
   m_ObjectHideFlags: 0
@@ -1309,3 +1329,4 @@ MonoBehaviour:
   playerWin: {fileID: 0}
   player1Score: {fileID: 0}
   player2Score: {fileID: 0}
+  pauseMenuPanel: {fileID: 0}
