@@ -107,17 +107,20 @@ public class SnakeController : MonoBehaviour
         snakeBodyExpand.Add(newSnakeBodyExpand);
         if (gameObject.name == player1)
         {
+            if (isScoreBoost) currentScore += 50;
             currentScore += 100;
             GameManager.Instance.player1Score.text = "Player 1 Score: " + currentScore;
         }
         else if (gameObject.name == player2)
         {
+            if (isScoreBoost) currentScore += 50;
             currentScore += 100;
             GameManager.Instance.player2Score.text = "Player 2 Score: " + currentScore;
         }
     }
     public void SnakeShrink()
     {
+        if (isShieldActive) return;
         if (snakeBodyExpand.Count == 1)
         {
             if (gameObject.name == player1)
@@ -153,11 +156,11 @@ public class SnakeController : MonoBehaviour
     {
         if (collision.tag == "Hit")
         {
-            if (gameObject.name == player1)
+            if (gameObject.name == player1 && !isShieldActive)
             {
                 GameManager.Instance.PlayerWin("Player 2 wins");
             }
-            else if (gameObject.name == player2)
+            else if (gameObject.name == player2 && !isShieldActive)
             {
                 GameManager.Instance.PlayerWin("Player 1 wins");
             }
@@ -165,14 +168,24 @@ public class SnakeController : MonoBehaviour
 
         if (collision.GetComponent<FoodController>())
         {
-            StartCoroutine(FoodController.Instance.SpwanTime());
+            StartCoroutine(FoodController.Instance.SpwanTime(6));
             SnakeExpand();
         }
 
         if (collision.GetComponent<PoisonController>())
         {
-            PoisonController.Instance.PoisonSpawnArea();
+            StartCoroutine(FoodController.Instance.SpwanTime(2));
             SnakeShrink();
+        }
+
+        if (collision.GetComponent<ShieldController>())
+        {
+            StartCoroutine(ActivateShield());
+        }
+
+        if (collision.GetComponent<ScoreBoostController>())
+        {
+            StartCoroutine(ScoreBoost());
         }
     }
 
@@ -190,5 +203,26 @@ public class SnakeController : MonoBehaviour
         {
             snakeBodyExpand.Add(Instantiate(snakeBodyExpandPrefab));
         }
+    }
+
+    bool isShieldActive;
+    bool isScoreBoost;
+    IEnumerator ActivateShield()
+    {
+        isShieldActive = true;
+        ShieldController.Instance.ShieldSpawn();
+        ShieldController.Instance.gameObject.SetActive(false);
+        yield return new WaitForSeconds(10);
+        isShieldActive = false;
+        ShieldController.Instance.gameObject.SetActive(true);
+    }
+    IEnumerator ScoreBoost()
+    {
+        isScoreBoost = true;
+        ScoreBoostController.Instance.ShieldSpawn();
+        ScoreBoostController.Instance.gameObject.SetActive(false);
+        yield return new WaitForSeconds(10);
+        isScoreBoost = false;
+        ScoreBoostController.Instance.gameObject.SetActive(true);
     }
 }

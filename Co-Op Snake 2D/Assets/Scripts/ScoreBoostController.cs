@@ -2,21 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodController : SingletonGenerics<FoodController>
+public class ScoreBoostController : SingletonGenerics<ScoreBoostController>
 {
     [SerializeField] private BoxCollider2D gridArea;
-    private void Start()
-    {
-        FoodSpawnArea();
-    }
-
-    public IEnumerator SpwanTime(float time)
-    {
-        FoodSpawnArea();
-        yield return new WaitForSecondsRealtime(time);
-        FoodSpawnArea();
-    }
-    public void FoodSpawnArea()
+    public void ShieldSpawn()
     {
         Bounds bounds = gridArea.bounds;
         float x = Random.Range(bounds.min.x, bounds.max.x);

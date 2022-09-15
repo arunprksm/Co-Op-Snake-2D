@@ -14,4 +14,6 @@ public class SingletonGenerics<T> : MonoBehaviour where T : SingletonGenerics<T>
             instance = (T)this;
         }
     }
+
+    //else condition not added (no needed)...
 }

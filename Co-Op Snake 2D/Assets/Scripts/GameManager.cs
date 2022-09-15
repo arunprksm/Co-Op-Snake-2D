@@ -16,9 +16,8 @@ public class GameManager : SingletonGenerics<GameManager>
 
     private void Start()
     {
-        if (GameOver != null)
-            GameOver.SetActive(false);
-        pauseMenuPanel.SetActive(false);
+        if (GameOver != null) GameOver.SetActive(false);
+        if (pauseMenuPanel != null) pauseMenuPanel.SetActive(false);
     }
 
     private void Update()
@@ -29,10 +28,7 @@ public class GameManager : SingletonGenerics<GameManager>
             {
                 Resume();
             }
-            else
-            {
-                Pause();
-            }
+            Pause();
         }
     }
     public void StartGame()

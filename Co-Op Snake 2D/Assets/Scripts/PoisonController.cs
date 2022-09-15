@@ -12,10 +12,10 @@ public class PoisonController : SingletonGenerics<PoisonController>
         PoisonSpawnArea();
     }
 
-    public IEnumerator SpwanTime()
+    public IEnumerator SpwanTime(float time)
     {
         PoisonSpawnArea();
-        yield return new WaitForSecondsRealtime(2);
+        yield return new WaitForSecondsRealtime(time);
         PoisonSpawnArea();
     }
     public void PoisonSpawnArea()
