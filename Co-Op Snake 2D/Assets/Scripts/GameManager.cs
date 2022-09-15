@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,26 +11,61 @@ public class GameManager : SingletonGenerics<GameManager>
     [SerializeField] private Text playerWin;
     public Text player1Score, player2Score;
 
+    internal bool IsGamePaused = false;
+    [SerializeField] private GameObject pauseMenuPanel;
+
     private void Start()
     {
-        if(GameOver !=null)
-        GameOver.SetActive(false);
+        if (GameOver != null)
+            GameOver.SetActive(false);
+        pauseMenuPanel.SetActive(false);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (IsGamePaused)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }
+        }
+    }
     public void StartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Time.timeScale = 1f;
+        pauseMenuPanel.SetActive(false);
     }
     public void MainMenu()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
+
+    private void Pause()
+    {
+        pauseMenuPanel.SetActive(true);
+        Time.timeScale = 0f;
+        IsGamePaused = true;
+    }
+
+    public void Resume()
+    {
+        pauseMenuPanel.SetActive(false);
+        Time.timeScale = 1f;
+        IsGamePaused = false;
+    }
+
     public void ReloadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         GameOver.SetActive(false);
+        pauseMenuPanel.SetActive(false);
         Time.timeScale = 1f;
     }
 

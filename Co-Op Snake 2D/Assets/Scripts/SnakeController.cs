@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SnakeController : SingletonGenerics<SnakeController>
+public class SnakeController : MonoBehaviour
 {
     [SerializeField] private ScreenBounds screenBounds;
     private Vector2 snakeDirection;
@@ -61,6 +61,8 @@ public class SnakeController : SingletonGenerics<SnakeController>
 
     private void HandleSnakeMovements(bool up, bool down, bool left, bool right)
     {
+        if (GameManager.Instance.IsGamePaused) return;
+
         if (up && snakeDirection != Vector2.down)
         {
             snakeDirection = Vector2.up;
