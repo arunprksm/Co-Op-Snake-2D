@@ -10,10 +10,10 @@ public class FoodController : SingletonGenerics<FoodController>
         FoodSpawnArea();
     }
 
-    public IEnumerator SpwanTime()
+    public IEnumerator SpwanTime(float time)
     {
         FoodSpawnArea();
-        yield return new WaitForSecondsRealtime(6);
+        yield return new WaitForSecondsRealtime(time);
         FoodSpawnArea();
     }
     public void FoodSpawnArea()

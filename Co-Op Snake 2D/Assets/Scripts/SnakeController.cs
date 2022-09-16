@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SnakeController : SingletonGenerics<SnakeController>
+public class SnakeController : MonoBehaviour
 {
     [SerializeField] private ScreenBounds screenBounds;
     private Vector2 snakeDirection;
@@ -11,10 +11,16 @@ public class SnakeController : SingletonGenerics<SnakeController>
     private List<Transform> snakeBodyExpand = new List<Transform>();
     string player1, player2;
 
+    [SerializeField] float snakeSpeed;
     int currentScore = 0;
 
     [SerializeField] private Transform snakeBodyExpandPrefab;
     [SerializeField] private int snakeInitialSize = 5;
+
+    [SerializeField] private Rigidbody2D rb2D;
+
+    bool isShieldActive;
+    bool isScoreBoost;
     private void Start()
     {
         player1 = "Snake1";
@@ -58,6 +64,8 @@ public class SnakeController : SingletonGenerics<SnakeController>
 
     private void HandleSnakeMovements(bool up, bool down, bool left, bool right)
     {
+        if (GameManager.Instance.IsGamePaused) return;
+
         if (up && snakeDirection != Vector2.down)
         {
             snakeDirection = Vector2.up;
@@ -102,17 +110,20 @@ public class SnakeController : SingletonGenerics<SnakeController>
         snakeBodyExpand.Add(newSnakeBodyExpand);
         if (gameObject.name == player1)
         {
+            if (isScoreBoost) currentScore += 50;
             currentScore += 100;
             GameManager.Instance.player1Score.text = "Player 1 Score: " + currentScore;
         }
         else if (gameObject.name == player2)
         {
+            if (isScoreBoost) currentScore += 50;
             currentScore += 100;
             GameManager.Instance.player2Score.text = "Player 2 Score: " + currentScore;
         }
     }
     public void SnakeShrink()
     {
+        if (isShieldActive) return;
         if (snakeBodyExpand.Count == 1)
         {
             if (gameObject.name == player1)
@@ -139,7 +150,7 @@ public class SnakeController : SingletonGenerics<SnakeController>
             {
                 currentScore -= 100;
                 if(currentScore <= 0) currentScore = 0;
-                GameManager.Instance.player1Score.text = "Player 2 Score: " + currentScore;
+                GameManager.Instance.player2Score.text = "Player 2 Score: " + currentScore;
             }
         }
     }
@@ -148,11 +159,11 @@ public class SnakeController : SingletonGenerics<SnakeController>
     {
         if (collision.tag == "Hit")
         {
-            if (gameObject.name == player1)
+            if (gameObject.name == player1 && !isShieldActive)
             {
                 GameManager.Instance.PlayerWin("Player 2 wins");
             }
-            else if (gameObject.name == player2)
+            else if (gameObject.name == player2 && !isShieldActive)
             {
                 GameManager.Instance.PlayerWin("Player 1 wins");
             }
@@ -160,14 +171,24 @@ public class SnakeController : SingletonGenerics<SnakeController>
 
         if (collision.GetComponent<FoodController>())
         {
-            StartCoroutine(FoodController.Instance.SpwanTime());
+            StartCoroutine(FoodController.Instance.SpwanTime(6));
             SnakeExpand();
         }
 
         if (collision.GetComponent<PoisonController>())
         {
-            PoisonController.Instance.PoisonSpawnArea();
+            StartCoroutine(FoodController.Instance.SpwanTime(2));
             SnakeShrink();
+        }
+
+        if (collision.GetComponent<ShieldController>())
+        {
+            StartCoroutine(ActivateShield());
+        }
+
+        if (collision.GetComponent<ScoreBoostController>())
+        {
+            StartCoroutine(ScoreBoost());
         }
     }
 
@@ -185,5 +206,24 @@ public class SnakeController : SingletonGenerics<SnakeController>
         {
             snakeBodyExpand.Add(Instantiate(snakeBodyExpandPrefab));
         }
+    }
+
+    IEnumerator ActivateShield()
+    {
+        isShieldActive = true;
+        ShieldController.Instance.ShieldSpawn();
+        ShieldController.Instance.gameObject.SetActive(false);
+        yield return new WaitForSeconds(10);
+        isShieldActive = false;
+        ShieldController.Instance.gameObject.SetActive(true);
+    }
+    IEnumerator ScoreBoost()
+    {
+        isScoreBoost = true;
+        ScoreBoostController.Instance.ShieldSpawn();
+        ScoreBoostController.Instance.gameObject.SetActive(false);
+        yield return new WaitForSeconds(10);
+        isScoreBoost = false;
+        ScoreBoostController.Instance.gameObject.SetActive(true);
     }
 }

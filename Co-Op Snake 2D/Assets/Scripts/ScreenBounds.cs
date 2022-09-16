@@ -53,7 +53,7 @@ public class ScreenBounds : MonoBehaviour
         bool xBoundResult = Mathf.Abs(worldPosition.x) > Mathf.Abs(boxCollider2D.bounds.min.x) - cornerOffset;
         bool yBoundResult = Mathf.Abs(worldPosition.y) > Mathf.Abs(boxCollider2D.bounds.min.y) - cornerOffset;
 
-        Vector2 signWorldPosition = new Vector2(Mathf.Sign(worldPosition.x), Mathf.Sign(worldPosition.y));
+        Vector2 signWorldPosition = new Vector2(Mathf.Sign(worldPosition.x -1), Mathf.Sign(worldPosition.y-1));
 
         if (xBoundResult && yBoundResult)
         {
