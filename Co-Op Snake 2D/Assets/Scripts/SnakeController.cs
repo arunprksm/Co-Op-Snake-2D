@@ -18,6 +18,9 @@ public class SnakeController : MonoBehaviour
     [SerializeField] private int snakeInitialSize = 5;
 
     [SerializeField] private Rigidbody2D rb2D;
+
+    bool isShieldActive;
+    bool isScoreBoost;
     private void Start()
     {
         player1 = "Snake1";
@@ -205,8 +208,6 @@ public class SnakeController : MonoBehaviour
         }
     }
 
-    bool isShieldActive;
-    bool isScoreBoost;
     IEnumerator ActivateShield()
     {
         isShieldActive = true;
