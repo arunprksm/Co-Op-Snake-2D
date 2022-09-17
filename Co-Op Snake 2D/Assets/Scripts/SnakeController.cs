@@ -177,7 +177,7 @@ public class SnakeController : MonoBehaviour
 
         if (collision.GetComponent<PoisonController>())
         {
-            StartCoroutine(FoodController.Instance.SpwanTime(2));
+            StartCoroutine(PoisonController.Instance.SpwanTime(2));
             SnakeShrink();
         }
 
