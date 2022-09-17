@@ -210,7 +210,7 @@ public class SnakeController : MonoBehaviour
         {
             StartCoroutine(ScoreBoost());
         }
-        if (collision.tag == "SPEED")
+        if (collision.gameObject.CompareTag ("SPEED"))
         {
             StartCoroutine(SpeedBoost());
         }
@@ -226,7 +226,7 @@ public class SnakeController : MonoBehaviour
         snakeBodyExpand.Clear();
         snakeBodyExpand.Add(transform);
 
-        for (int i = 1; i < this.snakeInitialSize; i++)
+        for (int i = 1; i < snakeInitialSize; i++)
         {
             snakeBodyExpand.Add(Instantiate(snakeBodyExpandPrefab));
         }
