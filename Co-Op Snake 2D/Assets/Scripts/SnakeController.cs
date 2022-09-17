@@ -26,6 +26,7 @@ public class SnakeController : MonoBehaviour
 
     bool isShieldActive;
     bool isScoreBoost;
+    bool isSpeedBoost;
     private void Start()
     {
         player1 = "Snake1";
@@ -111,12 +112,14 @@ public class SnakeController : MonoBehaviour
         {
             Vector2 newPosition = screenBounds.CalculateWrappedPosition(tempPosition);
             transform.position = newPosition;
+            return;
         }
-        else
+        transform.position = tempPosition;
+        if(isSpeedBoost)
         {
-            transform.position = tempPosition;
+            nextUpdate = Time.time + (1f / (speed * speedMultiplier * 2));
+            return;
         }
-
         nextUpdate = Time.time + (1f / (speed * speedMultiplier));
     }
 
@@ -186,26 +189,28 @@ public class SnakeController : MonoBehaviour
             }
         }
 
-        if (collision.GetComponent<FoodController>())
+        if (collision.tag == "FOOD")
         {
-            StartCoroutine(FoodController.Instance.SpwanTime(6));
             SnakeExpand();
         }
 
-        if (collision.GetComponent<PoisonController>())
+        if (collision.tag == "POISON")
         {
-            StartCoroutine(PoisonController.Instance.SpwanTime(2));
             SnakeShrink();
         }
 
-        if (collision.GetComponent<ShieldController>())
+        if (collision.tag == "SHIELD")
         {
             StartCoroutine(ActivateShield());
         }
 
-        if (collision.GetComponent<ScoreBoostController>())
+        if (collision.tag == "SCORE BOOST")
         {
             StartCoroutine(ScoreBoost());
+        }
+        if (collision.tag == "SPEED")
+        {
+            StartCoroutine(SpeedBoost());
         }
     }
 
@@ -228,19 +233,19 @@ public class SnakeController : MonoBehaviour
     IEnumerator ActivateShield()
     {
         isShieldActive = true;
-        ShieldController.Instance.gameObject.SetActive(false);
         yield return new WaitForSeconds(10);
         isShieldActive = false;
-        ShieldController.Instance.ShieldSpawn();
-        ShieldController.Instance.gameObject.SetActive(true);
     }
     IEnumerator ScoreBoost()
     {
         isScoreBoost = true;
-        ScoreBoostController.Instance.gameObject.SetActive(false);
         yield return new WaitForSeconds(15);
         isScoreBoost = false;
-        ScoreBoostController.Instance.ScoreSpawn();
-        ScoreBoostController.Instance.gameObject.SetActive(true);
+    }
+    IEnumerator SpeedBoost()
+    {
+        isSpeedBoost = true;
+        yield return new WaitForSeconds(5);
+        isSpeedBoost = false;
     }
 }

@@ -2,19 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodManager : SingletonGenerics<FoodManager>
+public class FoodManager : MonoBehaviour
 {
-    public FoodController massGainer;
-    public FoodController massBurner;
+    [SerializeField] private BoxCollider2D gridArea;
     private void Start()
     {
-        SpawnFood(massGainer);
-        SpawnFood(massBurner);
+        FoodSpawnArea();
     }
 
-    public void SpawnFood(FoodController Food)
+    public void FoodSpawnArea()
     {
-        FoodController foodController = Instantiate(Food);
-        //StartCoroutine(foodController.SpwanTime(10));
+        Bounds bounds = gridArea.bounds;
+
+        float x = Random.Range(bounds.min.x, bounds.max.x);
+        float y = Random.Range(bounds.min.y, bounds.max.y);
+
+        x = Mathf.Round(x);
+        y = Mathf.Round(y);
+
+        transform.position = new Vector2(x, y);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        FoodSpawnArea();
     }
 }

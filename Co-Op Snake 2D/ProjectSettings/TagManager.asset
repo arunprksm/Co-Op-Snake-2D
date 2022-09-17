@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Hit
+  - FOOD
+  - POISON
+  - SHIELD
+  - SCORE BOOST
+  - SPEED
   layers:
   - Default
   - TransparentFX
