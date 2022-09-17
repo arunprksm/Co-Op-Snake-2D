@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class GameManager : SingletonGenerics<GameManager>
 {
+    [SerializeField] private GameObject EscapeMenu;
     [SerializeField] private GameObject GameOver;
     [SerializeField] private Text playerWin;
     public Text player1Score, player2Score;
@@ -16,6 +17,7 @@ public class GameManager : SingletonGenerics<GameManager>
 
     private void Start()
     {
+        if (EscapeMenu != null) EscapeMenu.SetActive(true);
         if (GameOver != null) GameOver.SetActive(false);
         if (pauseMenuPanel != null) pauseMenuPanel.SetActive(false);
     }
