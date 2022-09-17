@@ -36,7 +36,6 @@ public class GameManager : SingletonGenerics<GameManager>
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Time.timeScale = 1f;
-        //pauseMenuPanel.SetActive(false);
     }
     public void MainMenu()
     {

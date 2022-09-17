@@ -5,24 +5,22 @@ using UnityEngine;
 public class SnakeController : MonoBehaviour
 {
     [SerializeField] private ScreenBounds screenBounds;
+    string player1, player2;
+
     private Vector2 snakeDirection;
     private bool up, left, down, right;
     private bool upArrow, leftArrow, downArrow, rightArrow;
     private List<Transform> snakeBodyExpand = new List<Transform>();
-    string player1, player2;
 
-    [SerializeField] float snakeSpeed;
-    int currentScore = 0;
 
     [SerializeField] private Transform snakeBodyExpandPrefab;
     [SerializeField] private int snakeInitialSize = 5;
 
-    [SerializeField] private Rigidbody2D rb2D;
-
-    public float speed = 20f;
-    public float speedMultiplier = 1f;
+    [SerializeField] private float snakeSpeed = 20f;
+    [SerializeField] private float snakeSpeedMultiplier = 1f;
 
     private float nextUpdate;
+    int currentScore = 0;
 
     bool isShieldActive;
     bool isScoreBoost;
@@ -97,17 +95,16 @@ public class SnakeController : MonoBehaviour
     }
     private void MovementControl()
     {
-        if (Time.time < nextUpdate)
-        {
-            return;
-        }
-
+        if (Time.time < nextUpdate) return;
+        
         for (int i = snakeBodyExpand.Count - 1; i > 0; i--)
         {
             snakeBodyExpand[i].position = snakeBodyExpand[i - 1].position;
         }
+
         Vector2 tempPosition;
         tempPosition = new Vector2(Mathf.Round(this.transform.position.x) + snakeDirection.x, Mathf.Round(this.transform.position.y) + snakeDirection.y);
+
         if (screenBounds.AmIOutOfBounds(tempPosition))
         {
             Vector2 newPosition = screenBounds.CalculateWrappedPosition(tempPosition);
@@ -115,12 +112,13 @@ public class SnakeController : MonoBehaviour
             return;
         }
         transform.position = tempPosition;
+
         if(isSpeedBoost)
         {
-            nextUpdate = Time.time + (1f / (speed * speedMultiplier * 2));
+            nextUpdate = Time.time + (1f / (snakeSpeed * snakeSpeedMultiplier * 2));
             return;
         }
-        nextUpdate = Time.time + (1f / (speed * speedMultiplier));
+        nextUpdate = Time.time + (1f / (snakeSpeed * snakeSpeedMultiplier));
     }
 
     public void SnakeExpand()

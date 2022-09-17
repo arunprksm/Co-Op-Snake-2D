@@ -1441,6 +1441,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 759373418, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
+      propertyPath: snakeSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 759373418, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
       propertyPath: screenBounds
       value: 
       objectReference: {fileID: 662907759}
@@ -1450,7 +1454,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 759373418, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
       propertyPath: snakeInitialSize
-      value: 4
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 759373418, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
+      propertyPath: snakeSpeedMultiplier
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 759373418, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
       propertyPath: snakeBodyExpandPrefab
@@ -2418,7 +2426,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1689827042}
   - component: {fileID: 1689827043}
-  - component: {fileID: 1689827044}
   m_Layer: 5
   m_Name: UIManager
   m_TagString: Untagged
@@ -2474,18 +2481,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &1689827044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1689827041}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 097c9014adfa607479a473dd4a5b18e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1692665352
 GameObject:
   m_ObjectHideFlags: 0
@@ -3348,6 +3343,18 @@ PrefabInstance:
       propertyPath: speedMultiplier
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 759373418, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
+      propertyPath: snakeInitialSize
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 759373418, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
+      propertyPath: snakeSpeedMultiplier
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 759373418, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
+      propertyPath: snakeBodyExpandPrefab
+      value: 
+      objectReference: {fileID: 6658735924399067593, guid: c27da67723418b74080b33635bc88f0f, type: 3}
     - target: {fileID: 1800879735, guid: 3d2967eded4be5f41b44178e62153e24, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0.6

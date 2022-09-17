@@ -12,8 +12,9 @@ public class SingletonGenerics<T> : MonoBehaviour where T : SingletonGenerics<T>
         if (instance == null)
         {
             instance = (T)this;
+            return;
         }
+        Debug.LogError("Duplication of Singleton Class " + instance + " is NOT ALLOWED");
+        Destroy(this);
     }
-
-    //else condition not added (no needed)...
 }
