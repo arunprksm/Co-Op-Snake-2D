@@ -7,7 +7,7 @@ public class FoodController : SingletonGenerics<FoodController>
     [SerializeField] private BoxCollider2D gridArea;
     private void Start()
     {
-        FoodSpawnArea();
+        StartCoroutine(SpwanTime(6));
     }
 
     public IEnumerator SpwanTime(float time)

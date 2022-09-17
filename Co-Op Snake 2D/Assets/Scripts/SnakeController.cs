@@ -40,7 +40,12 @@ public class SnakeController : MonoBehaviour
     private void Update()
     {
         HandleInputs();
-        if (name == player1) HandleSnakeMovements(up,down,left,right);
+        Moves();
+    }
+
+    private void Moves()
+    {
+        if (name == player1) HandleSnakeMovements(up, down, left, right);
         if (name == player2) HandleSnakeMovements(upArrow, downArrow, leftArrow, rightArrow);
     }
 
@@ -211,19 +216,19 @@ public class SnakeController : MonoBehaviour
     IEnumerator ActivateShield()
     {
         isShieldActive = true;
-        ShieldController.Instance.ShieldSpawn();
         ShieldController.Instance.gameObject.SetActive(false);
         yield return new WaitForSeconds(10);
         isShieldActive = false;
+        ShieldController.Instance.ShieldSpawn();
         ShieldController.Instance.gameObject.SetActive(true);
     }
     IEnumerator ScoreBoost()
     {
         isScoreBoost = true;
-        ScoreBoostController.Instance.ShieldSpawn();
         ScoreBoostController.Instance.gameObject.SetActive(false);
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(15);
         isScoreBoost = false;
+        ScoreBoostController.Instance.ScoreSpawn();
         ScoreBoostController.Instance.gameObject.SetActive(true);
     }
 }

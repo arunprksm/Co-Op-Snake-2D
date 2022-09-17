@@ -5,6 +5,10 @@ using UnityEngine;
 public class ShieldController : SingletonGenerics<ShieldController>
 {
     [SerializeField] private BoxCollider2D gridArea;
+    private void Start()
+    {
+        ShieldSpawn();
+    }
     public void ShieldSpawn()
     {
         Bounds bounds = gridArea.bounds;

@@ -9,7 +9,7 @@ public class PoisonController : SingletonGenerics<PoisonController>
 
     private void Start()
     {
-        PoisonSpawnArea();
+        StartCoroutine(SpwanTime(2));
     }
 
     public IEnumerator SpwanTime(float time)
