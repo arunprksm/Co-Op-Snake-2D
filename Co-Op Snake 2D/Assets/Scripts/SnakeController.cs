@@ -227,7 +227,7 @@ public class SnakeController : MonoBehaviour
         isScoreBoost = true;
         ScoreBoostController.Instance.ScoreSpawn();
         ScoreBoostController.Instance.gameObject.SetActive(false);
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(15);
         isScoreBoost = false;
         ScoreBoostController.Instance.gameObject.SetActive(true);
     }
