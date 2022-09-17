@@ -89,9 +89,9 @@ public class SnakeController : MonoBehaviour
         {
             snakeDirection = Vector2.up;
         }
-        else if (down && input != Vector2.up)
+        else if (down && snakeDirection != Vector2.up)
         {
-            input = Vector2.down;
+            snakeDirection = Vector2.down;
         }
         else if (left && snakeDirection != Vector2.right)
         {
