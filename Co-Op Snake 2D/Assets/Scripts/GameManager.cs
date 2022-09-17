@@ -27,6 +27,7 @@ public class GameManager : SingletonGenerics<GameManager>
             if (IsGamePaused)
             {
                 Resume();
+                return;
             }
             Pause();
         }
@@ -35,7 +36,7 @@ public class GameManager : SingletonGenerics<GameManager>
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Time.timeScale = 1f;
-        pauseMenuPanel.SetActive(false);
+        //pauseMenuPanel.SetActive(false);
     }
     public void MainMenu()
     {
