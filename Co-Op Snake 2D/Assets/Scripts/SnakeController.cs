@@ -19,6 +19,11 @@ public class SnakeController : MonoBehaviour
 
     [SerializeField] private Rigidbody2D rb2D;
 
+    public float speed = 20f;
+    public float speedMultiplier = 1f;
+
+    private float nextUpdate;
+
     bool isShieldActive;
     bool isScoreBoost;
     private void Start()
@@ -91,6 +96,11 @@ public class SnakeController : MonoBehaviour
     }
     private void MovementControl()
     {
+        if (Time.time < nextUpdate)
+        {
+            return;
+        }
+
         for (int i = snakeBodyExpand.Count - 1; i > 0; i--)
         {
             snakeBodyExpand[i].position = snakeBodyExpand[i - 1].position;
@@ -106,6 +116,8 @@ public class SnakeController : MonoBehaviour
         {
             transform.position = tempPosition;
         }
+
+        nextUpdate = Time.time + (1f / (speed * speedMultiplier));
     }
 
     public void SnakeExpand()
