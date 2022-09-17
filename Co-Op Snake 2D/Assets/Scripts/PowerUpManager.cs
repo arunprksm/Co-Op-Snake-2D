@@ -35,6 +35,10 @@ public class PowerUpManager : MonoBehaviour
             gameObject.SetActive(false);
         yield return new WaitForSeconds(time);
         gameObject.SetActive(true);
+    }
+
+    private void OnEnable()
+    {
         PowerUpSpawnArea();
     }
 }
