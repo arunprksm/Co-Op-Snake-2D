@@ -85,27 +85,21 @@ public class SnakeController : MonoBehaviour
     {
         if (GameManager.Instance.IsGamePaused) return;
 
-        if (snakeDirection.x != 0f)
+        if (up && snakeDirection != Vector2.down)
         {
-            if (up && snakeDirection != Vector2.down)
-            {
-                input = Vector2.up;
-            }
-            else if (down && snakeDirection != Vector2.up)
-            {
-                input = Vector2.down;
-            }
+            snakeDirection = Vector2.up;
         }
-        else if (snakeDirection.y != 0f)
+        else if (down && input != Vector2.up)
         {
-            if (left && snakeDirection != Vector2.right)
-            {
-                input = Vector2.left;
-            }
-            else if (right && snakeDirection != Vector2.left)
-            {
-                input = Vector2.right;
-            }
+            input = Vector2.down;
+        }
+        else if (left && snakeDirection != Vector2.right)
+        {
+            snakeDirection = Vector2.left;
+        }
+        else if (right && input != Vector2.left)
+        {
+            snakeDirection = Vector2.right;
         }
     }
     private void MovementControl()
@@ -190,7 +184,7 @@ public class SnakeController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Hit")
+        if (collision.gameObject.CompareTag("Hit"))
         {
             if (gameObject.name == player1 && !isShieldActive)
             {
@@ -202,22 +196,22 @@ public class SnakeController : MonoBehaviour
             }
         }
 
-        if (collision.tag == "FOOD")
+        if (collision.gameObject.CompareTag("FOOD"))
         {
             SnakeExpand();
         }
 
-        if (collision.tag == "POISON")
+        if (collision.gameObject.CompareTag("POISON"))
         {
             SnakeShrink();
         }
 
-        if (collision.tag == "SHIELD")
+        if (collision.gameObject.CompareTag("SHIELD"))
         {
             StartCoroutine(ActivateShield());
         }
 
-        if (collision.tag == "SCORE BOOST")
+        if (collision.gameObject.CompareTag("SCORE BOOST"))
         {
             StartCoroutine(ScoreBoost());
         }
