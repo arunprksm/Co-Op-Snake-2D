@@ -8,7 +8,6 @@ public class SnakeController : MonoBehaviour
     string player1, player2;
 
     private Vector2 snakeDirection;
-    private Vector2 input;
     private bool up, left, down, right;
     private bool upArrow, leftArrow, downArrow, rightArrow;
     private List<Transform> snakeBodyExpand = new List<Transform>();
@@ -61,10 +60,6 @@ public class SnakeController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (input != Vector2.zero)
-        {
-            snakeDirection = input;
-        }
         MovementControl();
     }
 
@@ -89,15 +84,15 @@ public class SnakeController : MonoBehaviour
         {
             snakeDirection = Vector2.up;
         }
-        else if (down && input != Vector2.up)
+        else if (down && snakeDirection != Vector2.up)
         {
-            input = Vector2.down;
+            snakeDirection = Vector2.down;
         }
         else if (left && snakeDirection != Vector2.right)
         {
             snakeDirection = Vector2.left;
         }
-        else if (right && input != Vector2.left)
+        else if (right && snakeDirection != Vector2.left)
         {
             snakeDirection = Vector2.right;
         }
