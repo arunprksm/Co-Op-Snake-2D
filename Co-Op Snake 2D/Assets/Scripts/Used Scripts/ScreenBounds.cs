@@ -5,17 +5,18 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class ScreenBounds : MonoBehaviour
+public class ScreenBounds : SingletonGenerics<ScreenBounds>
 {
-    BoxCollider2D boxCollider2D;
+    private BoxCollider2D boxCollider2D;
     private UnityEvent<Collider2D> ExitTriggerFired;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private float teleportOffset = 0.2f;
     [SerializeField] private float cornerOffset = 1f;
 
 
-    private void Awake()
+    private new void Awake()
     {
+        base.Awake();
         mainCamera.transform.localScale = Vector2.one;
         boxCollider2D = GetComponent<BoxCollider2D>();
         boxCollider2D.isTrigger = true;
