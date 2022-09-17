@@ -8,6 +8,7 @@ public class SnakeController : MonoBehaviour
     string player1, player2;
 
     private Vector2 snakeDirection;
+    private Vector2 input;
     private bool up, left, down, right;
     private bool upArrow, leftArrow, downArrow, rightArrow;
     private List<Transform> snakeBodyExpand = new List<Transform>();
@@ -25,6 +26,11 @@ public class SnakeController : MonoBehaviour
     bool isShieldActive;
     bool isScoreBoost;
     bool isSpeedBoost;
+
+    [SerializeField] private float shieldActiveTime = 10f;
+    [SerializeField] private float scoreBoostTime = 15f;
+    [SerializeField] private float speedBoostTime = 10f;
+
     private void Start()
     {
         player1 = "Snake1";
@@ -55,6 +61,10 @@ public class SnakeController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (input != Vector2.zero)
+        {
+            snakeDirection = input;
+        }
         MovementControl();
     }
 
@@ -75,28 +85,33 @@ public class SnakeController : MonoBehaviour
     {
         if (GameManager.Instance.IsGamePaused) return;
 
-        if (up && snakeDirection != Vector2.down)
+        if (snakeDirection.x != 0f)
         {
-            snakeDirection = Vector2.up;
+            if (up && snakeDirection != Vector2.down)
+            {
+                input = Vector2.up;
+            }
+            else if (down && snakeDirection != Vector2.up)
+            {
+                input = Vector2.down;
+            }
         }
-
-        else if (left && snakeDirection != Vector2.right)
+        else if (snakeDirection.y != 0f)
         {
-            snakeDirection = Vector2.left;
-        }
-        else if (down && snakeDirection != Vector2.up)
-        {
-            snakeDirection = Vector2.down;
-        }
-        else if (right && snakeDirection != Vector2.left)
-        {
-            snakeDirection = Vector2.right;
+            if (left && snakeDirection != Vector2.right)
+            {
+                input = Vector2.left;
+            }
+            else if (right && snakeDirection != Vector2.left)
+            {
+                input = Vector2.right;
+            }
         }
     }
     private void MovementControl()
     {
         if (Time.time < nextUpdate) return;
-        
+
         for (int i = snakeBodyExpand.Count - 1; i > 0; i--)
         {
             snakeBodyExpand[i].position = snakeBodyExpand[i - 1].position;
@@ -113,7 +128,7 @@ public class SnakeController : MonoBehaviour
         }
         transform.position = tempPosition;
 
-        if(isSpeedBoost)
+        if (isSpeedBoost)
         {
             nextUpdate = Time.time + (1f / (snakeSpeed * snakeSpeedMultiplier * 2));
             return;
@@ -167,7 +182,7 @@ public class SnakeController : MonoBehaviour
             else if (gameObject.name == player2)
             {
                 currentScore -= 100;
-                if(currentScore <= 0) currentScore = 0;
+                if (currentScore <= 0) currentScore = 0;
                 GameManager.Instance.player2Score.text = "Player 2 Score: " + currentScore;
             }
         }
@@ -231,19 +246,19 @@ public class SnakeController : MonoBehaviour
     IEnumerator ActivateShield()
     {
         isShieldActive = true;
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(shieldActiveTime);
         isShieldActive = false;
     }
     IEnumerator ScoreBoost()
     {
         isScoreBoost = true;
-        yield return new WaitForSeconds(15);
+        yield return new WaitForSeconds(scoreBoostTime);
         isScoreBoost = false;
     }
     IEnumerator SpeedBoost()
     {
         isSpeedBoost = true;
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(speedBoostTime);
         isSpeedBoost = false;
     }
 }
